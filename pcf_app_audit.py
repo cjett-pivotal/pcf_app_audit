@@ -17,17 +17,16 @@ def main():
         json_contents = json.loads(contents)
         apps = {}
         for i in json_contents["app_usages"]:
-            if i["organization_name"] != "system" and i["organization_name"] != "DNA":
-                org_name = i["organization_name"]
-                space_name = i["space_name"]
-                app_name = i["app_name"]
-                inst_count = i["instance_count"]
-                if org_name not in apps:
-                    apps[org_name] = {space_name:{app_name:{"instances":inst_count}}}
-                elif space_name not in apps[org_name]:
-                    apps[org_name][space_name] = {app_name:{"instances":inst_count}}
-                elif app_name not in apps[org_name][space_name]:
-                    apps[org_name][space_name][app_name] = {"instances":inst_count}
+            org_name = i["organization_name"]
+            space_name = i["space_name"]
+            app_name = i["app_name"]
+            inst_count = i["instance_count"]
+            if org_name not in apps:
+                apps[org_name] = {space_name:{app_name:{"instances":inst_count}}}
+            elif space_name not in apps[org_name]:
+                apps[org_name][space_name] = {app_name:{"instances":inst_count}}
+            elif app_name not in apps[org_name][space_name]:
+                apps[org_name][space_name][app_name] = {"instances":inst_count}
 
         for org in apps:
             for space in apps[org]:
