@@ -29,13 +29,14 @@ def main():
                 apps[org_name][space_name][app_name] = {"instances":inst_count}
 
         for org in apps:
+            print "Org: "+org
             for space in apps[org]:
-                print "Org: "+org
                 print "Space: "+space
                 print "Number of apps: " +str(len(apps[org][space]))
                 instances=0
                 for app in apps[org][space]:
                     instances += apps[org][space][app]["instances"]
                 print "Number of instances: "+str(instances)
+            print ""
 
 main()
