@@ -4,6 +4,7 @@ import ssl
 import getpass
 import urllib2
 import csv
+import sys
 
 def get_usage_payload(url, username='', password=''):
     if username and password:
@@ -14,13 +15,13 @@ def get_usage_payload(url, username='', password=''):
                                 passwd=password)
         opener = urllib2.build_opener(auth_handler)
         urllib2.install_opener(opener)
+    try:
         contents = urllib2.urlopen(url+"/app-usage/today",context=ssl._create_unverified_context()).read()
-        return contents
-    else:
-        contents = urllib2.urlopen(url+"/app-usage/today",context=ssl._create_unverified_context()).read()
-        return contents
-        
-
+    except:
+        print "Error connecting to "+url
+        sys.exit()
+    return contents
+    
 def main():
     url = ''
     while url is '':
