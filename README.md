@@ -1,6 +1,6 @@
 # pcf_app_audit
 
-A script to consume the [cf-orgs-usage API](https://github.com/cbusch-pivotal/cf-orgs-usage) and print out Organization and Space usage (number of apps and instances
+A script to consume the [cf-orgs-usage API](https://github.com/cbusch-pivotal/cf-orgs-usage) and print out Organization and Space usage (number of apps and instances)
 
 ## Usage
 
