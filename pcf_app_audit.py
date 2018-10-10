@@ -13,7 +13,6 @@ def get_usage_payload(url, username='', password=''):
                                 user=username,
                                 passwd=password)
         opener = urllib2.build_opener(auth_handler)
-        # ...and install it globally so it can be used with urlopen.
         urllib2.install_opener(opener)
         contents = urllib2.urlopen(url+"/app-usage/today",context=ssl._create_unverified_context()).read()
         return contents
