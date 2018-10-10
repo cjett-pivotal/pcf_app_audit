@@ -1,6 +1,4 @@
 #!/usr/local/opt/python/libexec/bin/python
-import sys
-import os.path
 import json
 import ssl
 import getpass
