@@ -5,6 +5,7 @@ import json
 import ssl
 import getpass
 import urllib2
+import csv
 
 def get_usage_payload(url, username='', password=''):
     if username and password:
@@ -45,7 +46,7 @@ def main():
             password = getpass.getpass(prompt="Password: ")
 
     contents = get_usage_payload(url, username, password)
-    print contents
+    # print contents
 
 
     # if len(sys.argv) != 2:
@@ -72,15 +73,20 @@ def main():
         elif app_name not in apps[org_name][space_name]:
             apps[org_name][space_name][app_name] = {"instances":inst_count}
 
-    for org in apps:
-        print "Org: "+org
-        for space in apps[org]:
-            print "Space: "+space
-            print "Number of apps: " +str(len(apps[org][space]))
-            instances=0
-            for app in apps[org][space]:
-                instances += apps[org][space][app]["instances"]
-            print "Number of instances: "+str(instances)
-        print ""
+    with open('app_usage.csv', 'wb') as csvfile:
+        fieldnames = ['Org', 'Space', '# Apps', '# Instances']
+        csvwriter = csv.DictWriter(csvfile, fieldnames=fieldnames)
+        csvwriter.writeheader()
+        for org in apps:
+            print "Org: "+org
+            for space in apps[org]:
+                print "Space: "+space
+                print "Number of apps: " +str(len(apps[org][space]))
+                instances=0
+                for app in apps[org][space]:
+                    instances += apps[org][space][app]["instances"]
+                print "Number of instances: "+str(instances)
+                csvwriter.writerow({'Org': org, 'Space': space, '# Apps': str(len(apps[org][space])), '# Instances': str(instances)})
+            print ""
 
 main()
