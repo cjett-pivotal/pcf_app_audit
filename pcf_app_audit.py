@@ -46,19 +46,7 @@ def main():
             password = getpass.getpass(prompt="Password: ")
 
     contents = get_usage_payload(url, username, password)
-    # print contents
 
-
-    # if len(sys.argv) != 2:
-    #     print "Too many arguments: " + str(len(sys.argv))
-    #     sys.exit()
-    # filename = sys.argv[1]
-    # if os.path.isfile(filename) != True:
-    #     print "File does not exist in local directory."
-    #     sys.exit()
-    # file = open(filename,"r")
-    # if file.mode == "r":
-    #     contents = file.read()
     json_contents = json.loads(contents)
     apps = {}
     for i in json_contents["app_usages"]:
