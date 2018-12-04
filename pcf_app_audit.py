@@ -63,6 +63,8 @@ def main():
         fieldnames = ['Org', 'Space', '# Apps', '# Instances']
         csvwriter = csv.DictWriter(csvfile, fieldnames=fieldnames)
         csvwriter.writeheader()
+        app_instances = 0
+        num_apps = 0
         for org in apps:
             print "Org: "+org
             for space in apps[org]:
@@ -73,6 +75,10 @@ def main():
                     instances += apps[org][space][app]["instances"]
                 print "Number of instances: "+str(instances)
                 csvwriter.writerow({'Org': org, 'Space': space, '# Apps': str(len(apps[org][space])), '# Instances': str(instances)})
+                num_apps += len(apps[org][space])
+                app_instances += instances
             print ""
+        print "Total foundation apps: "+str(num_apps)
+        print "Total foundation instances: "+str(app_instances)
 
 main()
