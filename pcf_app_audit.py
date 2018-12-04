@@ -25,7 +25,7 @@ def get_usage_payload(url, username='', password=''):
 def main():
     url = ''
     while url is '':
-        url = raw_input("Usage API URL? <http(s)://usage-api.example.com>: ")
+        url = raw_input("Usage API URL? <http(s)://cf-orgs-usage.apps.example.com>: ")
         if len(url.split("/")) != 3:
             print "Invalid input."
             url = ''
